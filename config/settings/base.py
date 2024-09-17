@@ -39,13 +39,17 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "drf_yasg",
     "rest_framework",
+    'rest_framework_simplejwt',
     "corsheaders",
     "rest_framework_swagger",
     'debug_toolbar',
 ]
 
 LOCAL_APPS = [
-    # "main.apps.employee.apps.EmployeeConfig",
+    "main.apps.category.apps.CategoryConfig",
+    "main.apps.common.apps.CommonConfig",
+    "main.apps.product.apps.ProductConfig",
+    "main.apps.user.apps.UserConfig",
 ]
 
 INSTALLED_APPS = THIRD_PARTY_APPS + LOCAL_APPS + DJANGO_APPS
@@ -82,6 +86,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -171,3 +181,5 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     "http://127.0.0.1:8000",
 ]
+
+GRPC_PORT = 50051
